@@ -8,7 +8,7 @@ Welcome to the Community Post Backend Application! This application is designed 
 To get started, just clone the repository and run npm install && npm run dev:
 
 ```bash 
-git clone https://github.com/iaincollins/nextjs-starter.git
+git clone https://github.com/sakkurthi-sashank/community-post.git
 npm install
 npm run dev
 ```
