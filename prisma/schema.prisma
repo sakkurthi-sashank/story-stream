@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model comments {
+  id        String   @id @unique @default(uuid())
+  hash      String   @unique @default(uuid())
+  comment   String   @db.VarChar(255)
+  user      users    @relation(fields: [userId], references: [hash])
+  userId    String   @db.VarChar(255)
+  post      posts    @relation(fields: [postId], references: [hash])
+  createdAt DateTime @default(now())
+  postId    String   @db.VarChar(255)
+}
+
+model like {
+  id        String   @id @default(uuid())
+  hash      String   @unique @default(uuid())
+  user      users    @relation(fields: [userId], references: [hash])
+  userId    String   @db.VarChar(255)
+  post      posts    @relation(fields: [postId], references: [hash])
+  createdAt DateTime @default(now())
+  postId    String   @db.VarChar(255)
+}
+
+model posts {
+  id        String     @id @default(uuid())
+  publish   Boolean    @default(true)
+  content   String     @db.VarChar(255)
+  user      users      @relation(fields: [userId], references: [hash])
+  userId    String     @db.VarChar(255)
+  hash      String     @unique @default(uuid())
+  createdAt DateTime   @default(now())
+  like      like[]
+  comments  comments[]
+}
+
+model users {
+  id         String     @id @default(uuid())
+  first_name String     @db.VarChar(255)
+  last_name  String     @db.VarChar(255)
+  hash       String     @unique @default(uuid())
+  email      String     @unique @db.VarChar(255)
+  password   String     @db.VarChar(255)
+  active     Boolean    @default(true)
+  verified   Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  posts      posts[]
+  like       like[]
+  comments   comments[]
+}
