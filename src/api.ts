@@ -23,29 +23,31 @@ import {
 
 const router: IRouter = express.Router();
 
+router.use(isAuthenticated);
+
 // posts get routers
-router.get("/get-posts/", isAuthenticated, getLatestPosts);
-router.get("/get-posts/:hashId/", isAuthenticated, getHashSpecificPosts);
-router.get("/get-user-posts/:userId/", isAuthenticated, getUserSpecificPosts);
+router.get("/get-posts/", getLatestPosts);
+router.get("/get-posts/:hashId/", getHashSpecificPosts);
+router.get("/get-user-posts/:userId/", getUserSpecificPosts);
 
 // authentication post router
 router.post("/login-user/", login);
 router.post("/register-user/", register);
-router.post("/verify-user/", isAuthenticated, verifyUser);
-router.post("/delete-user/", isAuthenticated, deleteUser);
+router.post("/verify-user/", verifyUser);
+router.post("/delete-user/", deleteUser);
 
 // posts post router
-router.post("/create-post/", isAuthenticated, createPost);
-router.post("/update-post/", isAuthenticated, updatePost);
-router.post("/delete-post/", isAuthenticated, deletePost);
+router.post("/create-post/", createPost);
+router.post("/update-post/", updatePost);
+router.post("/delete-post/", deletePost);
 
 // comment post router
-router.post("/create-comment/", isAuthenticated, createComment);
-router.post("/delete-comment/", isAuthenticated, deleteComment);
-router.post("/update-comment/", isAuthenticated, updateComment);
+router.post("/create-comment/", createComment);
+router.post("/delete-comment/", deleteComment);
+router.post("/update-comment/", updateComment);
 
 // like post router
-router.post("/create-like/", isAuthenticated, createLike);
-router.post("/delete-like/", isAuthenticated, deleteLike);
+router.post("/create-like/", createLike);
+router.post("/delete-like/", deleteLike);
 
 export default router;
