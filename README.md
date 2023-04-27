@@ -1,8 +1,6 @@
-![communitypost](https://user-images.githubusercontent.com/126908332/225225840-3ed84c53-1727-46cb-a5ca-a06f784db473.png)
-
 ## Description
 
-Welcome to the Community Post Backend Application! This application is designed to provide the backend functionality for a social media application. This readme file will provide an overview of the application's features and how to use them.
+Welcome to the Story Stream Backend Application! This application is designed to provide the backend functionality for a social media / Blogging application. This readme file will provide an overview of the application's features and how to use them.
 
 ## Running locally in development mode
 To get started, just clone the repository and run npm install && npm run dev:
